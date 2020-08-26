@@ -1,11 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Button from "@material-ui/core/Button";
+import { Table, TableBody, TableCell, TableHead, TableRow, Button } from "@material-ui/core"
 import { ISales } from 'app/shared/model/sales.model';
 
 type itemList = {
@@ -19,15 +13,7 @@ type ItemProps = {
   onStateChange: (sales: ISales) => void
 };
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650
-  }
-});
-
 export default function TableItems(props: ItemProps) {
-  const classes = useStyles();
-  
   const { list, state, onStateChange } = props
   
   const updateSaleState = (sale, newState) => {
@@ -35,7 +21,7 @@ export default function TableItems(props: ItemProps) {
   }
 
   return (
-    <Table className={classes.table} aria-label="simple table">
+    <Table aria-label="simple table">
       <TableHead>
         <TableRow>
           <TableCell align="center">Nro</TableCell>
@@ -57,12 +43,12 @@ export default function TableItems(props: ItemProps) {
             <TableCell align="center">4000</TableCell>
             <TableCell align="center">
               {state === 'IN_CHARGE' ? (
-                <Button variant="contained" size="medium" color="primary" onClick={() => updateSaleState(row, 'SHIPPED')}>
+                <Button variant="outlined" color="primary" onClick={() => updateSaleState(row, 'SHIPPED')}>
                   Enviar
                 </Button>
               ) : state === 'SHIPPED' ? (
-                <Button variant="contained" size="medium" color="primary" onClick={() => updateSaleState(row, 'DELIVERED')}>
-                  En camino
+                <Button variant="contained" color="primary" onClick={() => updateSaleState(row, 'DELIVERED')}>
+                  Entregar
                 </Button>
               ) : (
                     <Button variant="contained" disabled >

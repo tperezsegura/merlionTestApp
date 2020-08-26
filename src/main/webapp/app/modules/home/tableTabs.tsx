@@ -1,10 +1,5 @@
 import React from "react";
-import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import { AppBar, Tabs, Tab, Typography, Box } from "@material-ui/core"
 import TableItems from "./tableItems";
 
 interface TabPanelProps {
@@ -41,16 +36,7 @@ function a11yProps(index: string) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    minWidth: 650
-  }
-}));
-
 export default function TableTabs({ itemList, onStateChange }) {
-  const classes = useStyles();
-  const theme = useTheme();
   const tabOption = ['IN_CHARGE', 'SHIPPED', 'DELIVERED'];
   const [value, setValue] = React.useState(tabOption[0]);
 
@@ -60,14 +46,14 @@ export default function TableTabs({ itemList, onStateChange }) {
 
   const tabSelect = (arr: any[]) => {
     return arr.map((state) => (
-      <TabPanel value={value} index={state} dir={theme.direction} key={state}>
+      <TabPanel value={value} index={state} key={state}>
         <TableItems state={state} list={itemList} onStateChange={onStateChange} />
       </TabPanel>
     ));
   };
 
   return (
-    <div className={classes.root}>
+    <div >
       <AppBar position="static" color="default">
         <Tabs
           value={value}

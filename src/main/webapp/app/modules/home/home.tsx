@@ -6,6 +6,8 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntities, updateEntity } from 'app/entities/sales/sales.reducer';
 
 import TableTabs from './tableTabs'
+import { ThemeProvider } from '@material-ui/core';
+import { theme } from './customTheme';
 
 export interface IHomeProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> { }
 
@@ -15,9 +17,11 @@ export const Home = (props: IHomeProps) => {
   }, []);
 
   const { salesList } = props;
-  
+
   return (
-    <TableTabs itemList={salesList} onStateChange={props.updateEntity} />
+    <ThemeProvider theme={theme}>
+      <TableTabs itemList={salesList} onStateChange={props.updateEntity} />
+    </ThemeProvider>
   );
 };
 
